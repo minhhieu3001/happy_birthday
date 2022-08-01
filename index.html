@@ -4,78 +4,225 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="index.css">
-    <script type='text/javascript'>
-        //<![CDATA[
-        var pictureSrc ="https://e7.pngegg.com/pngimages/346/775/png-clipart-cherry-blossom-cerasus-computer-file-hand-painted-cherry-watercolor-painting-painted.png"; //the location of the snowflakes
-        var pictureWidth = 35; //the width of the snowflakes
-        var pictureHeight = 25; //the height of the snowflakes
-        var numFlakes = 20; //the number of snowflakes
-        var downSpeed = 0.01; //the falling speed of snowflakes (portion of screen per 100 ms)
-        var lrFlakes = 10; //the speed that the snowflakes should swing from side to side
+<!--    <script type='text/javascript'>-->
+<!--        //<![CDATA[-->
+<!--        var pictureSrc ="https://i.imgur.com/UcREnXa.png"; //the location of the snowflakes-->
+<!--        var pictureWidth = 50; //the width of the snowflakes-->
+<!--        var pictureHeight = 50; //the height of the snowflakes-->
+<!--        var numFlakes = 20; //the number of snowflakes-->
+<!--        var downSpeed = 0.01; //the falling speed of snowflakes (portion of screen per 100 ms)-->
+<!--        var lrFlakes = 10; //the speed that the snowflakes should swing from side to side-->
 
 
-        if( typeof( numFlakes ) != 'number' || Math.round( numFlakes ) != numFlakes || numFlakes < 1 ) { numFlakes = 10; }
+<!--        if( typeof( numFlakes ) != 'number' || Math.round( numFlakes ) != numFlakes || numFlakes < 1 ) { numFlakes = 10; }-->
 
-        //draw the snowflakes
-        for( var x = 0; x < numFlakes; x++ ) {
-            if( document.layers ) { //releave NS4 bug
-                document.write('<layer id="snFlkDiv'+x+'"><imgsrc="'+pictureSrc+'" height="'+pictureHeight+'"width="'+pictureWidth+'" alt="*" border="0"></layer>');
-            } else {
-                document.write('<div style="position:absolute; z-index:9999;"id="snFlkDiv'+x+'"><img src="'+pictureSrc+'"height="'+pictureHeight+'" width="'+pictureWidth+'" alt="*"border="0"></div>');
-            }
-        }
+<!--        //draw the snowflakes-->
+<!--        for( var x = 0; x < numFlakes; x++ ) {-->
+<!--            if( document.layers ) { //releave NS4 bug-->
+<!--                document.write('<img id="snFlkDiv'+x+'"><imgsrc="'+pictureSrc+'" height="'+pictureHeight+'"width="'+pictureWidth+'" alt="*" border="0"></img>');-->
+<!--            } else {-->
+<!--                document.write('<div style="position:absolute; z-index:9999;"id="snFlkDiv'+x+'"><img src="'+pictureSrc+'"height="'+pictureHeight+'" width="'+pictureWidth+'" alt="*"border="0"></div>');-->
+<!--            }-->
+<!--        }-->
 
-        //calculate initial positions (in portions of browser window size)
-        var xcoords = new Array(), ycoords = new Array(), snFlkTemp;
-        for( var x = 0; x < numFlakes; x++ ) {
-            xcoords[x] = ( x + 1 ) / ( numFlakes + 1 );
-            do { snFlkTemp = Math.round( ( numFlakes - 1 ) * Math.random() );
-            } while( typeof( ycoords[snFlkTemp] ) == 'number' );
-            ycoords[snFlkTemp] = x / numFlakes ;
-        }
+<!--        //calculate initial positions (in portions of browser window size)-->
+<!--        var xcoords = new Array(), ycoords = new Array(), snFlkTemp;-->
+<!--        for( var x = 0; x < numFlakes; x++ ) {-->
+<!--            xcoords[x] = ( x + 1 ) / ( numFlakes + 1 );-->
+<!--            do { snFlkTemp = Math.round( ( numFlakes - 1 ) * Math.random() );-->
+<!--            } while( typeof( ycoords[snFlkTemp] ) == 'number' );-->
+<!--            ycoords[snFlkTemp] = x / numFlakes ;-->
+<!--        }-->
 
-        //now animate
-        function flakeFall() {
-            if( !getRefToDivNest('snFlkDiv0') ) { return; }
-            var scrWidth = 0, scrHeight = 0, scrollHeight = 0, scrollWidth = 0;
-//find screen settings for all variations. doing this every time allows for resizing and scrolling
-            if( typeof( window.innerWidth ) == 'number' ) { scrWidth = window.innerWidth; scrHeight = window.innerHeight; } else {
-                if( document.documentElement && (document.documentElement.clientWidth ||document.documentElement.clientHeight ) ) {
-                    scrWidth = document.documentElement.clientWidth; scrHeight = document.documentElement.clientHeight; } else {
-                    if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
-                        scrWidth = document.body.clientWidth; scrHeight = document.body.clientHeight; } } }
-            if( typeof( window.pageYOffset ) == 'number' ) { scrollHeight = pageYOffset; scrollWidth = pageXOffset; } else {
-                if( document.body && ( document.body.scrollLeft ||document.body.scrollTop ) ) { scrollHeight = document.body.scrollTop;scrollWidth = document.body.scrollLeft; } else {
-                    if(document.documentElement && (document.documentElement.scrollLeft ||document.documentElement.scrollTop ) ) { scrollHeight =document.documentElement.scrollTop; scrollWidth =document.documentElement.scrollLeft; } }
-            }
-//move the snowflakes to their new position
-            for( var x = 0; x < numFlakes; x++ ) {
-                if( ycoords[x] * scrHeight > scrHeight - pictureHeight ) { ycoords[x] = 0; }
-                var divRef = getRefToDivNest('snFlkDiv'+x); if( !divRef ) { return; }
-                if( divRef.style ) { divRef = divRef.style; } var oPix = document.childNodes ? 'px' : 0;
-                divRef.top = ( Math.round( ycoords[x] * scrHeight ) + scrollHeight ) + oPix;
-                divRef.left = ( Math.round( ( ( xcoords[x] * scrWidth ) - (pictureWidth / 2 ) ) + ( ( scrWidth / ( ( numFlakes + 1 ) * 4 ) ) * (Math.sin( lrFlakes * ycoords[x] ) - Math.sin( 3 * lrFlakes * ycoords[x]) ) ) ) + scrollWidth ) + oPix;
-                ycoords[x] += downSpeed;
-            }
-        }
+<!--        //now animate-->
+<!--        function flakeFall() {-->
+<!--            if( !getRefToDivNest('snFlkDiv0') ) { return; }-->
+<!--            var scrWidth = 0, scrHeight = 0, scrollHeight = 0, scrollWidth = 0;-->
+<!--//find screen settings for all variations. doing this every time allows for resizing and scrolling-->
+<!--            if( typeof( window.innerWidth ) == 'number' ) { scrWidth = window.innerWidth; scrHeight = window.innerHeight; } else {-->
+<!--                if( document.documentElement && (document.documentElement.clientWidth ||document.documentElement.clientHeight ) ) {-->
+<!--                    scrWidth = document.documentElement.clientWidth; scrHeight = document.documentElement.clientHeight; } else {-->
+<!--                    if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {-->
+<!--                        scrWidth = document.body.clientWidth; scrHeight = document.body.clientHeight; } } }-->
+<!--            if( typeof( window.pageYOffset ) == 'number' ) { scrollHeight = pageYOffset; scrollWidth = pageXOffset; } else {-->
+<!--                if( document.body && ( document.body.scrollLeft ||document.body.scrollTop ) ) { scrollHeight = document.body.scrollTop;scrollWidth = document.body.scrollLeft; } else {-->
+<!--                    if(document.documentElement && (document.documentElement.scrollLeft ||document.documentElement.scrollTop ) ) { scrollHeight =document.documentElement.scrollTop; scrollWidth =document.documentElement.scrollLeft; } }-->
+<!--            }-->
+<!--//move the snowflakes to their new position-->
+<!--            for( var x = 0; x < numFlakes; x++ ) {-->
+<!--                if( ycoords[x] * scrHeight > scrHeight - pictureHeight ) { ycoords[x] = 0; }-->
+<!--                var divRef = getRefToDivNest('snFlkDiv'+x); if( !divRef ) { return; }-->
+<!--                if( divRef.style ) { divRef = divRef.style; } var oPix = document.childNodes ? 'px' : 0;-->
+<!--                divRef.top = ( Math.round( ycoords[x] * scrHeight ) + scrollHeight ) + oPix;-->
+<!--                divRef.left = ( Math.round( ( ( xcoords[x] * scrWidth ) - (pictureWidth / 2 ) ) + ( ( scrWidth / ( ( numFlakes + 1 ) * 4 ) ) * (Math.sin( lrFlakes * ycoords[x] ) - Math.sin( 3 * lrFlakes * ycoords[x]) ) ) ) + scrollWidth ) + oPix;-->
+<!--                ycoords[x] += downSpeed;-->
+<!--            }-->
+<!--        }-->
 
-        //DHTML handlers
-        function getRefToDivNest(divName) {
-            if( document.layers ) { return document.layers[divName]; } //NS4
-            if( document[divName] ) { return document[divName]; } //NS4 also
-            if( document.getElementById ) { return document.getElementById(divName); } //DOM (IE5+, NS6+, Mozilla0.9+, Opera)
-            if( document.all ) { return document.all[divName]; } //Proprietary DOM - IE4
-            return false;
-        }
+<!--        //DHTML handlers-->
+<!--        function getRefToDivNest(divName) {-->
+<!--            if( document.layers ) { return document.layers[divName]; } //NS4-->
+<!--            if( document[divName] ) { return document[divName]; } //NS4 also-->
+<!--            if( document.getElementById ) { return document.getElementById(divName); } //DOM (IE5+, NS6+, Mozilla0.9+, Opera)-->
+<!--            if( document.all ) { return document.all[divName]; } //Proprietary DOM - IE4-->
+<!--            return false;-->
+<!--        }-->
 
-        window.setInterval('flakeFall();',100);
-        //]]>
-    </script>
+<!--        window.setInterval('flakeFall();',100);-->
+<!--        //]]>-->
+<!--    </script>-->
 </head>
 <body>
-    <img class="background" src="https://img.meta.com.vn/Data/image/2021/02/22/hoa-anh-dao-18.jpg" />
-    <div style="text-align: center" >
-        <img class="animation" src="https://inatp.com/wp-content/uploads/2021/05/t1.jpg" />
+    <div class="main">
+        <canvas id="canvas"></canvas>
+        <img class="pic" src="https://inatp.com/wp-content/uploads/2021/05/t1.jpg" />
+        <img class="content" src="https://jobsgo.vn/blog/wp-content/uploads/2021/08/content-la-gi-4.jpg" />
     </div>
+
+<script>
+    var canvas = document.getElementById("canvas"),
+        ctx = canvas.getContext("2d"),
+        things = [],
+        thingsCount = 124,
+        mouse = {
+            x: -100,
+            y: -100
+        },
+        minDist = 150;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    console.log(canvas);
+    // object image
+    var image = new Image();
+    image.src = 'https://i.imgur.com/UcREnXa.png';
+    // image.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Love_heart_uidaodjsdsew.gif/1200px-Love_heart_uidaodjsdsew.gif';
+    // image.src = 'https://static.wixstatic.com/media/2cd43b_57438aebde5a4b0fa20c6880a9fafabf~mv2.png/v1/fill/w_320,h_272,fp_0.50_0.50/2cd43b_57438aebde5a4b0fa20c6880a9fafabf~mv2.png';
+
+    for (var i = 0; i < thingsCount; i++) {
+        let opacity = Math.random() + 0.4;
+        let thingWidth = (Math.floor(Math.random() * 20) + 20) * (opacity + 0.4);
+        let thingHeight = image.naturalHeight / image.naturalWidth * thingWidth;
+        let speed = Math.random() * 1 + 0.5;
+        things.push({
+            width: thingWidth,
+            height: thingHeight,
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height - thingHeight,
+            speed: speed,
+            vY: speed,
+            vX: 0,
+            d: Math.random() * 1.2 - 0.6, // wind or something like that
+            stepSize: (Math.random()) / 20,
+            step: 0,
+            angle: Math.random() * 180 - 90,
+            rad: Math.random(),
+            opacity: opacity,
+            _ratate: Math.random() // ratate 正負
+        });
+    }
+
+    function drawThings() {
+        things.map((thing) => {
+            ctx.beginPath();
+            thing.rad = (thing.angle * Math.PI) / 180;
+            ctx.save();
+            var cx = thing.x + thing.width / 2;
+            var cy = thing.y + thing.height / 2;
+            ctx.globalAlpha = thing.opacity;
+            ctx.setTransform(
+                Math.cos(thing.rad),
+                Math.sin(thing.rad),
+                -Math.sin(thing.rad),
+                Math.cos(thing.rad),
+                cx - cx * Math.cos(thing.rad) + cy * Math.sin(thing.rad),
+                cy - cx * Math.sin(thing.rad) - cy * Math.cos(thing.rad)
+            );
+            ctx.drawImage(image, thing.x, thing.y, thing.width, thing.height);
+            ctx.restore();
+        });
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        drawThings();
+    }
+
+    function update() {
+        things.map((thing) => {
+            var dist = Math.sqrt((thing.x - mouse.x) ** 2 + (thing.y - mouse.y) ** 2);
+
+            if (dist < minDist) {
+                var force = minDist / (dist * dist),
+                    xcomp = (mouse.x - thing.x) / dist,
+                    ycomp = (mouse.y - thing.y) / dist,
+                    deltaV = force * 2; // deplay when hover mouse
+
+                thing.vX -= deltaV * xcomp;
+                thing.vY -= deltaV * ycomp;
+
+                if (thing.d * xcomp > 0) {
+                    thing.d = 0 - thing.d;
+                }
+            } else {
+                thing.vX *= .98;
+
+                if (thing.vY < thing.speed) {
+                    thing.vY = thing.speed
+                }
+
+                thing.vX += Math.cos(thing.step += (Math.random() * 0.05)) * thing.stepSize;
+            }
+
+            thing.y += thing.vY;
+            thing.x += thing.vX + thing.d;
+
+            var _angle = Math.random() + 0.2;
+            // stuff.angle += _angle;
+            if (thing._ratate == 0) {
+                thing.angle += _angle;
+            } else {
+                thing.angle -= _angle;
+            }
+
+            if (thing.y > canvas.height) {
+                reset(thing);
+            }
+
+            if (thing.x > canvas.width || thing.x < (0 - thing.width)) {
+                reset(thing);
+            }
+        });
+    }
+
+    function reset(thing) {
+        thing.opacity = Math.random() + 0.4;
+        thing.width = (Math.floor(Math.random() * 20) + 20) * (thing.opacity + 0.4);
+        thing.height = image.naturalHeight / image.naturalWidth * thing.width;
+        thing.x = Math.floor(Math.random() * canvas.width);
+        thing.y = 0 - thing.height;
+        thing.speed = Math.random() * 1 + 0.5
+        thing.vY = thing.speed;
+        thing.vX = 0;
+        // thing.angle = 0;
+        // thing.size = 0;
+        thing._ratate = Math.random();
+    }
+
+    canvas.addEventListener('mousemove', function(e){
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
+
+    function tick() {
+        draw();
+        update();
+        requestAnimationFrame(tick);
+    }
+
+    tick();
+</script>
 </body>
 </html>
