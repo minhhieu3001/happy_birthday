@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="index.css">
     <script type='text/javascript'>
         //<![CDATA[
         var pictureSrc ="https://e7.pngegg.com/pngimages/346/775/png-clipart-cherry-blossom-cerasus-computer-file-hand-painted-cherry-watercolor-painting-painted.png"; //the location of the snowflakes
-        var pictureWidth = 30; //the width of the snowflakes
-        var pictureHeight = 30; //the height of the snowflakes
+        var pictureWidth = 35; //the width of the snowflakes
+        var pictureHeight = 25; //the height of the snowflakes
         var numFlakes = 20; //the number of snowflakes
         var downSpeed = 0.01; //the falling speed of snowflakes (portion of screen per 100 ms)
         var lrFlakes = 10; //the speed that the snowflakes should swing from side to side
@@ -30,7 +31,7 @@
             xcoords[x] = ( x + 1 ) / ( numFlakes + 1 );
             do { snFlkTemp = Math.round( ( numFlakes - 1 ) * Math.random() );
             } while( typeof( ycoords[snFlkTemp] ) == 'number' );
-            ycoords[snFlkTemp] = x / numFlakes;
+            ycoords[snFlkTemp] = x / numFlakes ;
         }
 
         //now animate
@@ -72,6 +73,9 @@
     </script>
 </head>
 <body>
-    <h1>NOTHING</h1>
+    <img class="background" src="https://img.meta.com.vn/Data/image/2021/02/22/hoa-anh-dao-18.jpg" />
+    <div style="text-align: center" >
+        <img class="animation" src="https://inatp.com/wp-content/uploads/2021/05/t1.jpg" />
+    </div>
 </body>
 </html>
