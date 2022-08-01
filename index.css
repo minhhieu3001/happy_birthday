@@ -23,7 +23,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     animation-name: a;
-    animation-duration: 5s;
+    animation-duration: 10s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 
@@ -37,7 +37,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     animation-name: b;
-    animation-duration: 10s;
+    animation-duration: 20s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 
@@ -45,6 +45,11 @@ body {
 
 @keyframes a {
     0% {
+        width: 0%;
+        height: 0%;
+        opacity: 0;
+    }
+    50% {
         width: 0%;
         height: 0%;
         opacity: 0;
@@ -62,7 +67,7 @@ body {
         height: 0%;
         opacity: 0;
     }
-    50% {
+    60% {
         width: 0%;
         height: 0%;
         opacity: 0;
