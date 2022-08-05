@@ -20,8 +20,8 @@ body {
 .pic {
     position: absolute;
     align-items: center;
-    top: 28%;
-    left: 28%;
+    top: 30%;
+    left: 30%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -34,8 +34,8 @@ body {
 
 .content {
     position: absolute;
-    top: 28%;
-    left: 28%;
+    top: 30%;
+    left: 30%;
     animation-name: b;
     animation-duration: 20s;
     animation-iteration-count: 1;
@@ -58,8 +58,8 @@ body {
         opacity: 0;
     }
     100% {
-        width: 30%;
-        height: 40%;
+        width: 28%;
+        height: 32%;
         opacity: 1;
     }
 }
@@ -76,8 +76,8 @@ body {
         opacity: 0;
     }
     100% {
-        width: 30%;
-        height: 40%;
+        width: 28%;
+        height: 32%;
         opacity: 1;
     }
 }
